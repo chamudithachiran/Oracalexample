@@ -1,0 +1,356 @@
+1.Create a PSQL block thet accepts two numerical values from
+the user and display their total and difference.
+
+
+**Conditional Statements**
+
+--If Statements
+
+**Syntax
+	IF <condition> THEN
+		PLSQL Statement
+	END IF;
+
+--If Else Statement
+**Syntax
+
+	IF<condition> THEN
+		PLSQL statement
+	ELSE
+		PLSQL statement
+	END IF;
+
+-- If Else If Statement
+**Syntax
+	IF<condition> THEN
+		PLSQL Statement
+	ELSIF <condition 2> THEN
+		PLSQL Statement
+	END IF;
+
+-- Case Statement - Multiple Conditions
+Syntax:
+CASE
+   WHEN <condition1> THEN
+        //PLSQL Statements
+   WHEN <condition2> THEN
+        //PLSQL Statements
+   ELSE
+        //PLSQL Statements
+END CASE;
+
+-- Case Statement - Possibilities of one expression/variable
+Syntax:
+CASE <expression/variable>
+     WHEN <valuel> THEN
+          //PLSQL Statements
+     WHEN <valuel2> THEN
+          //PLSQL Statements
+     ELSE
+         //PLSQL Statements
+END CASE;
+
+2. Create a PLSQL block to accept employee salary from the user
+and display the tax amount and net salary using the 
+following criteria.
+if salary>500000.00, tax rate=0.15
+if salary>300000.00, tax rate=0.10
+if salary>100000.00, tax rate=0.08
+else tax rate=0.00
+
+
+**Loops in PLSQL**
+--General Loop
+Syntax:
+LOOP
+   //PLSQL Statements
+   EXIT WHEN <condition>;
+
+END LOOP;
+
+--Create a PLSQL block to print numbers from 0 to 30
+--Loop is terminated when condition is evaluated to be true
+/*
+--While Loop
+Syntax:
+     WHILW <condition> LOOP
+        //PLSQL Statements
+     END LOOP;
+*/
+
+--Cteate a PLSQL block to display only the numbers that can be divided by 3
+--whithout any remainders which are between 10 and 50
+
+/*
+--For Loops
+--1. Inctement Loop
+Syntax:
+FOR <variable> IN <lower_bount>..<upper_bound> LOOP
+    //Statements
+END LOOP;
+*/
+
+--Create a PLSQL block that displays numbers from 10 to 20 using a for loop
+
+/*
+Create the following table with their constraints 
+ Table name : employees
+ Colums:
+ - id integer /number autoincrement primary key
+ - e_index varchar should start with EID
+ - e_name varchar
+ - basic_salary decimal (20,2) defailt 25000.00
+ - allowances decimal (20,2) default 0.00 should not be less than 0
+ - deduction decimal (20,2) default 0.00 should not be less than 0
+*/
+
+/*
+Insert at least 3 records into employees table. Use your own data
+
+** Working with data stored in a table**
+
+1) Select table
+
+Select intatement are use to retreve data stored for a specific record or raw from a table and store them in plsql variables.
+It can be use only only when select command retreve a single record.
+
+ SYNTAX : 
+		SELECT <column_list> INTO <variable_list> WHERE <conditions>;
+
+To make sure that select into statement retreves only one record a where clouse should be use to filter out unnessesary records
+Additionaly we can use limit clouse to restrict the number of records retreve to one
+
+**PLSQL Cotext Area**
+
+Context area is the memory region allocated by oracale for processing SQL statement and thair result.If stores information associanted with
+the execution of SQL statements. The context area may consist of information such as
+          1.Active Set
+                  Rows returned when exexuting a select statement.
+          2.Execution Details
+                  Information related to the complied SQL statements.
+                               EX- .Resource utilization
+                                   .Execution Plan
+                                   .Number of raws affected
+          3.Cursor Details
+                  Tracks whather a cursor is used to access context area.
+
+A cursor is a pointer to a context area associated with a SQL statement. It is provide the accessibility to the information available on a context area.
+Cursors are used to gain more control over the information and to access numberof raws affected, process data from quarry result raw at a time.
+          1.Implicit Cursors
+                    A set of predifined cursors executed autfomatically by oracel system when executing SQL ststements. 
+An implicit cursor is wed only when there their is no explicat cursor associated. with the Gung.
+          2.Explicit cursers
+                    These cursors can be used to gain mare Carra Control over the These are developer defined 
+Curves used for GPL/SQL block Context processing information Carry results) from Generally they are used with select Statements.
+
+**Attributes of a cursor**
+
+1.Row Count
+
+Returns the number of raws affected by SQL statements.
+Syntax: <cursur>% ROWCOUNT
+
+EX- SQL % ROWCOUNT
+
+2.Found
+Returnd true if select into statement retrieve a row or a insert,update or delete statement affected atleast one row.
+Syntax: <cursur>% FOUND
+
+3.Not Found
+Returnd true if a select into statement that cloes not retrieve any recotd or returns true if inset,update or delete commands did
+not medify any record at all.
+Syntax: <cursur>% NOTFOUND
+
+**EXPLICIT CURSORS**
+1) Declare the cursor
+
+CURSOR Cuisar-name> IS <Select Statement >
+
+2) Opening Cursor
+
+OPEN Cursor-name>
+
+3)
+
+Fetch Data (used inside Loop)
+
+FFTCH Cursor name> INTO <variable>
+
+4) Close Cursor
+
+CLOSE Cursor name>
+
+**Stored Procedores**
+  It is ate type of sub programs used to perfome a specific task using PLSQL statements.there are store in the databased as precompile objects . a procedores is a
+named logical unit that can accept parameter execute SQL statement and return result.
+
+ -Caractor is Procedores-
+1.Pre Compiled Objects
+    -It is are stored in the database after there copilaction it hels to reduce the execution type when it is involed.
+2.Reduce Network traffic
+    -Stored Procedure help inpliment bussines logic of an application in the database layer. As the oparactio are executed in the databased sarver the number of collection reqast
+and network traffic between application and database is rediuced. 
+3.Cord Reuserbility
+    -SP can be used multiple times from deferent application or devices without rewriting SQL logic.
+4.Security
+    -Direct accessibility to store procedurs can be restricted using diffrent privilages for user role and users.
+
+--Syntax
+/*
+CREATE OR REPLACE PROCEDURE <procedure_name>(<parameter list>)
+AS
+  //Variable declaration
+BEGIN
+  //PLSQL Statements
+END;
+*/
+
+IN- These parameters are used to pass valius in to procedur thay are consider to be only 
+the valius of the parameters can not be updated from the inside of the pocedure. it is defolte type of the parameter.
+
+OUT- These parameter are used to pass valius from the store procedure .A variable that is not been inilized can be pass as and out parameters.
+The valiue of out parameters can be change deuring procedure exicution. 
+
+IN OUT- This parameters can be used pass valius in to a procedure and out from the procedure. There are read only and must been initialized before passing in to 
+a procedure.
+
+- Database Administation with Oracle-
+
+Database administration refers to the activities involed with managing and maintaining a database system to ensure data consistency
+availability by optimizing the performence and security 
+
+Task involed with database administration 
+
+01) Installing and configering the database 
+02) Backup and recovery
+                  Invloes scheduling regular database backup setup desaster recovery plan and restore options.
+
+03) Performance Optimizing
+	Using proper indexing and partitioning machanisms to improve query execution using pre complie database object and result cashing
+	helps to improve the performance .
+
+04) Data intergrity & Consistency
+  	Using intergrity constrains by prymary keys foreign keys unique constraind domain constrains check constrains and
+	not null constrains also involes using transactions triggers store procedure on validation data stored in databases.
+
+05) Access controll
+
+	Insuering security involes user roll management permition management and user account management 		
+
+
+**Backup Types
+01) Full backup
+	Full backup copies the entire database including data database structure and required controll files 
+
+02) Incremental backup
+	Copies changes make to the database since last full backup can create incremental backup of two levels 
+ level 0: Similler to the full backup
+ level 1: Differencial or incremental
+
+03) Archievelog backup
+
+create a copy of the archivelog files in the oracle server it enables users to freeup the memmory space cosumed by archive files by
+deleting them after creating the backup.
+
+
+
+**NO AQL (Not Only SQL)**
+
+--Column Family Store--
+    It is organice data in to a table with columns and rows in a way that is optimice for faster retrivel and scalability.
+insterd of row based aproch column family storse used a column oriented model.
+
+    Data is stored using 3 eliment,
+1. Row Key- A roe key is used as unic identifie for a row.
+2. Column Family- Represent a logical group of related columns.
+3. Column- Each column we have a name, value and time stand.
+
+--Graph Based Databased--
+Organice data in to note an there are relationship in to egeres used in sociolmedia application and when it is required manage related data.
+Note will represent while agers represent relationships.
+
+--Document Stores--
+Stores data in the forme of deson,json and XML each object represented is refes as a document.
+A group of object wich sheres a common perpes is refer to as a collection.Documents in the same collection can have different sets of
+attribiutes.
+       
+     EX:-
+        Collections{id: 0002;
+                    name:'chamu'
+                    token:'123465'
+                    platform:'Google'
+                    profile_image:'______'
+                   }
+        Documents  {id:001
+                    name:'chamu'
+                    email:'chirangachamu03@gmail.com'
+                    password:'784681@C'
+                   }
+
+ *creating a collection
+     syntax:
+            db.createCollection('collection_name');
+*Collection with schema 
+     Syntax:
+            db.createCollection('categories',
+{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:['attributes'],
+            properties:{
+               attributes:{
+                    bsonType:'data type',
+                    description:'description'
+                },
+                name:{
+                    bsonType:'string',
+                    description:'name is required'
+                }
+            }
+        }
+    }
+}
+)
+
+*Inserting only one document
+let user={
+    "name":"chamu chiran",
+    "email":"chirangachamu@gmail.com",
+    "city":"Kandy",
+    "type":"admin"
+};
+use('shop');
+db.getCollection('users').insertOne(user);
+
+** Distributed Databases**
+It is a collection of multiple inter conected databases stored agros multiple physical location.multiple databases worck together
+by comunicating with each other thru a network conection to bhehawe as a single database. The uses or other clayent application 
+can access data in any of the conected databases as in the data all stored at the same location. The databased system manages data distribution
+by criating replication or partistioning data as required.
+
+-Key Caractoristic Of Distributed Databases-
+
+1.Distributed- data is stored accros multiple mashins insterd of a single server.
+2.Scalability- Can hadel large voliums of data and concorent conection request using replications or partioning.
+3.Fold Tolerence-If one databases fals the sysytem can function with out any interactions using othe replications.
+
+-Type od Distributed Dstsbses-
+It is a databse sysytem with one or more databases using the same type of DBMS software.It is esyer to manage and maintain as 
+data can be access and modified simaltaniyasly.
+
+-Heterogeneous Database-
+Tis database system is a network of two or more databased systems with deferent types of database managment systems.
+A middle ware is used to manage the communication between connected database managment systems.Thes middlewares 
+jenaraly used jneric connetawity (ODBC or JDBC) to access data.
+
+-Distributed Database Managment System-
+Distributed database managment system is a senterlice software application that manage a distributed database 
+in awy as if all the databases are grouped into singel databse stored in to single location.
+
+-Schema Architecture in DBMS-
+1.External Schema-provide accessibility to the applications and enduses. uses are allowd to access data
+that is relevent to there are user roal or application.
+
+
+

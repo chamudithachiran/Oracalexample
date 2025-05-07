@@ -1,0 +1,282 @@
+1.Create a PSQL block thet accepts two numerical values from
+the user and display their total and difference.
+
+
+**Conditional Statements**
+
+--If Statements
+
+**Syntax
+	IF <condition> THEN
+		PLSQL Statement
+	END IF;
+
+--If Else Statement
+**Syntax
+
+	IF<condition> THEN
+		PLSQL statement
+	ELSE
+		PLSQL statement
+	END IF;
+
+-- If Else If Statement
+**Syntax
+	IF<condition> THEN
+		PLSQL Statement
+	ELSIF <condition 2> THEN
+		PLSQL Statement
+	END IF;
+
+-- Case Statement - Multiple Conditions
+Syntax:
+CASE
+   WHEN <condition1> THEN
+        //PLSQL Statements
+   WHEN <condition2> THEN
+        //PLSQL Statements
+   ELSE
+        //PLSQL Statements
+END CASE;
+
+-- Case Statement - Possibilities of one expression/variable
+Syntax:
+CASE <expression/variable>
+     WHEN <valuel> THEN
+          //PLSQL Statements
+     WHEN <valuel2> THEN
+          //PLSQL Statements
+     ELSE
+         //PLSQL Statements
+END CASE;
+
+2. Create a PLSQL block to accept employee salary from the user
+and display the tax amount and net salary using the 
+following criteria.
+if salary>500000.00, tax rate=0.15
+if salary>300000.00, tax rate=0.10
+if salary>100000.00, tax rate=0.08
+else tax rate=0.00
+
+
+**Loops in PLSQL**
+--General Loop
+Syntax:
+LOOP
+   //PLSQL Statements
+   EXIT WHEN <condition>;
+
+END LOOP;
+
+--Create a PLSQL block to print numbers from 0 to 30
+--Loop is terminated when condition is evaluated to be true
+/*
+--While Loop
+Syntax:
+     WHILW <condition> LOOP
+        //PLSQL Statements
+     END LOOP;
+*/
+
+--Cteate a PLSQL block to display only the numbers that can be divided by 3
+--whithout any remainders which are between 10 and 50
+
+/*
+--For Loops
+--1. Inctement Loop
+Syntax:
+FOR <variable> IN <lower_bount>..<upper_bound> LOOP
+    //Statements
+END LOOP;
+*/
+
+--Create a PLSQL block that displays numbers from 10 to 20 using a for loop
+
+/*
+Create the following table with their constraints 
+ Table name : employees
+ Colums:
+ - id integer /number autoincrement primary key
+ - e_index varchar should start with EID
+ - e_name varchar
+ - basic_salary decimal (20,2) defailt 25000.00
+ - allowances decimal (20,2) default 0.00 should not be less than 0
+ - deduction decimal (20,2) default 0.00 should not be less than 0
+*/
+
+/*
+Insert at least 3 records into employees table. Use your own data
+
+** Working with data stored in a table**
+
+1) Select table
+
+Select intatement are use to retreve data stored for a specific record or raw from a table and store them in plsql variables.
+It can be use only only when select command retreve a single record.
+
+ SYNTAX : 
+		SELECT <column_list> INTO <variable_list> WHERE <conditions>;
+
+To make sure that select into statement retreves only one record a where clouse should be use to filter out unnessesary records
+Additionaly we can use limit clouse to restrict the number of records retreve to one
+
+**PLSQL Cotext Area**
+
+Context area is the memory region allocated by oracale for processing SQL statement and thair result.If stores information associanted with
+the execution of SQL statements. The context area may consist of information such as
+          1.Active Set
+                  Rows returned when exexuting a select statement.
+          2.Execution Details
+                  Information related to the complied SQL statements.
+                               EX- .Resource utilization
+                                   .Execution Plan
+                                   .Number of raws affected
+          3.Cursor Details
+                  Tracks whather a cursor is used to access context area.
+
+A cursor is a pointer to a context area associated with a SQL statement. It is provide the accessibility to the information available on a context area.
+Cursors are used to gain more control over the information and to access numberof raws affected, process data from quarry result raw at a time.
+          1.Implicit Cursors
+                    A set of predifined cursors executed autfomatically by oracel system when executing SQL ststements. 
+An implicit cursor is wed only when there their is no explicat cursor associated. with the Gung.
+          2.Explicit cursers
+                    These cursors can be used to gain mare Carra Control over the These are developer defined 
+Curves used for GPL/SQL block Context processing information Carry results) from Generally they are used with select Statements.
+
+**Attributes of a cursor**
+
+1.Row Count
+
+Returns the number of raws affected by SQL statements.
+Syntax: <cursur>% ROWCOUNT
+
+EX- SQL % ROWCOUNT
+
+2.Found
+Returnd true if select into statement retrieve a row or a insert,update or delete statement affected atleast one row.
+Syntax: <cursur>% FOUND
+
+3.Not Found
+Returnd true if a select into statement that cloes not retrieve any recotd or returns true if inset,update or delete commands did
+not medify any record at all.
+Syntax: <cursur>% NOTFOUND
+
+**EXPLICIT CURSORS**
+1) Declare the cursor
+
+CURSOR Cuisar-name> IS <Select Statement >
+
+2) Opening Cursor
+
+OPEN Cursor-name>
+
+3)
+
+Fetch Data (used inside Loop)
+
+FFTCH Cursor name> INTO <variable>
+
+4) Close Cursor
+
+CLOSE Cursor name>
+
+**Stored Procedores**
+  It is ate type of sub programs used to perfome a specific task using PLSQL statements.there are store in the databased as precompile objects . a procedores is a
+named logical unit that can accept parameter execute SQL statement and return result.
+
+ -Caractor is Procedores-
+1.Pre Compiled Objects
+    -It is are stored in the database after there copilaction it hels to reduce the execution type when it is involed.
+2.Reduce Network traffic
+    -Stored Procedure help inpliment bussines logic of an application in the database layer. As the oparactio are executed in the databased sarver the number of collection reqast
+and network traffic between application and database is rediuced. 
+3.Cord Reuserbility
+    -SP can be used multiple times from deferent application or devices without rewriting SQL logic.
+4.Security
+    -Direct accessibility to store procedurs can be restricted using diffrent privilages for user role and users.
+
+--Syntax
+/*
+CREATE OR REPLACE PROCEDURE <procedure_name>(<parameter list>)
+AS
+  //Variable declaration
+BEGIN
+  //PLSQL Statements
+END;
+*/
+
+IN- These parameters are used to pass valius in to procedur thay are consider to be only 
+the valius of the parameters can not be updated from the inside of the pocedure. it is defolte type of the parameter.
+
+OUT- These parameter are used to pass valius from the store procedure .A variable that is not been inilized can be pass as and out parameters.
+The valiue of out parameters can be change deuring procedure exicution. 
+
+IN OUT- This parameters can be used pass valius in to a procedure and out from the procedure. There are read only and must been initialized before passing in to 
+a procedure.
+
+- Database Administation with Oracle-
+
+Database administration refers to the activities involed with managing and maintaining a database system to ensure data consistency
+availability by optimizing the performence and security 
+
+Task involed with database administration 
+
+01) Installing and configering the database 
+02) Backup and recovery
+                  Invloes scheduling regular database backup setup desaster recovery plan and restore options.
+
+03) Performance Optimizing
+	Using proper indexing and partitioning machanisms to improve query execution using pre complie database object and result cashing
+	helps to improve the performance .
+
+04) Data intergrity & Consistency
+  	Using intergrity constrains by prymary keys foreign keys unique constraind domain constrains check constrains and
+	not null constrains also involes using transactions triggers store procedure on validation data stored in databases.
+
+05) Access controll
+
+	Insuering security involes user roll management permition management and user account management 		
+
+
+**Backup Types
+01) Full backup
+	Full backup copies the entire database including data database structure and required controll files 
+
+02) Incremental backup
+	Copies changes make to the database since last full backup can create incremental backup of two levels 
+ level 0: Similler to the full backup
+ level 1: Differencial or incremental
+
+03) Archievelog backup
+
+create a copy of the archivelog files in the oracle server it enables users to freeup the memmory space cosumed by archive files by
+deleting them after creating the backup.
+
+
+
+**NO AQL (Not Only SQL)**
+
+nosql is a non relational database approach that allows storing unstructured or semi structured data 
+no sql do not use any sql queries and avoid using sql joints. it provides a flexible approach to store data by allowing values of different data types to be stored for the same attribute
+also it can store records representing the same entity with different sets of attributes 
+no sql databases are used when it is required to handle large ammount of data with different attributes and not following any predefined formats
+they are being used in real time application,social media platforms,IOT applications,content management systems and e-commerce applications
+
+**Characteristics of NO SQL**
+
+01.Non-Relational- No SQL never provide or use tables with fixed set of attributes.do not require any normalization or object relationale mapping (Foreighn Keys)
+02.Schema Free- Can use value of different data types for the same attributes.do not follow domain constraints 
+03.Simple API- Do not use any sql queries.a set of predefined methods to manage data and quering the results.do not use complex structures like SQL Joints.data is stored in the form of jeson or xml
+04.Performance-No SQL is used for big data and reak time application.considered to be providing auto-scaling and failover capabilities.only supports eventual consistancy.
+ 
+**Key-Value Stores**
+-data is stored in key value pairs. usually represented as associative arrays. consisting of keys and values.each key is unique identifier and values are stored in the form of json
+Examples-Redis,Amazon,DynamoDB
+
+
+
+
+         
+
+
+
